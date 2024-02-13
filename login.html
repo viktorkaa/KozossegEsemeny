@@ -47,41 +47,28 @@
         <button type="submit">Bejelentkezés</button>
     </form>
 
-<script>
-function validateLogin() {
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
+    <script>
+        function validateLogin() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var emailPattern = /\S+@\S+\.\S+/; // E-mail formátum ellenőrzése
+            var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; // Jelszó formátum ellenőrzése
 
-    // Egyszerű ellenőrzés, hogy az email és jelszó megfelelő formátumú-e
-    if (email === 'valódi@email.com' && password === 'valódi_jelszó') {
-        return true; 
-    } else {
-        alert('Hibás e-mail cím vagy jelszó!');
-        return false; 
-    }
-}
-</script>
+            if (!emailPattern.test(email)) {
+                alert('Hibás e-mail formátum!');
+                return false; // Form elküldésének megakadályozása
+            }
 
-<script type="module">
-  
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-  
-  const firebaseConfig = {
-    apiKey: "AIzaSyDGx8PS25uV6lhtgXKTAMbPpTiQcvXyPlA",
-    authDomain: "esemenyek-b6541.firebaseapp.com",
-    projectId: "esemenyek-b6541",
-    storageBucket: "esemenyek-b6541.appspot.com",
-    messagingSenderId: "156912111604",
-    appId: "1:156912111604:web:904e27dade71f0cb2173a1",
-    measurementId: "G-2XH9XHLBH2"
-  };
+            if (!passwordPattern.test(password)) {
+                alert('A jelszónak legalább 6 karakter hosszúnak kell lennie, és tartalmaznia kell legalább egy kisbetűt, egy nagybetűt és egy számot!');
+                return false; // Form elküldésének megakadályozása
+            }
 
-  
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
-</script>
+            // Ha minden feltétel teljesült, átdobás az index.html-re
+            window.location.href = 'index.html';
+            return false; // Az alapértelmezett form elküldésének megakadályozása
+        }
+    </script>
 
 </body>
 </html>
