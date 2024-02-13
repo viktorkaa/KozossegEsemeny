@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esemény hozzáadása</title>
+    <!-- Bootstrap CSS betöltése -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<!-- Űrlap az esemény hozzáadásához -->
+<div class="container mt-6">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Esemény hozzáadása</h2>
+            <form action="esemeny_feldolgozas.php" method="POST">
+                <div class="form-group">
+                    <label for="event_name">Esemény neve:</label>
+                    <input type="text" class="form-control" id="event_name" name="event_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Leírás:</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="event_date">Esemény ideje:</label>
+                    <input type="datetime-local" class="form-control" id="event_date" name="event_date" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Hozzáadás</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JavaScript betöltése -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
