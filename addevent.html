@@ -11,9 +11,9 @@
 
 <!-- Űrlap az esemény hozzáadásához -->
 <div class="container mt-6">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h2>Esemény hozzáadása</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">Esemény hozzáadása</h2>
             <form action="esemeny_feldolgozas.php" method="POST">
                 <div class="form-group">
                     <label for="event_name" id="nev">Esemény neve:</label>
@@ -27,7 +27,7 @@
                     <label for="event_date" id="date">Esemény ideje:</label>
                     <input type="datetime-local" class="form-control" id="event_date" name="event_date" required>
                 </div>
-                <button type="submit" class="btn btn-primary" id="click">Hozzáadás</button>
+                <button type="submit" class="btn btn-primary btn-block">Hozzáadás</button>
             </form>
         </div>
     </div>
@@ -37,8 +37,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <script type="module">
+<script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
  
@@ -57,7 +56,6 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
   
-    // Az esemény hozzáadása a Firebase Realtime Database-be
     function addEvent() {
       var eventName = document.getElementById('event_name').value;
       var description = document.getElementById('description').value;
@@ -94,7 +92,6 @@
                         });
                 };
   
-    // Az események listázása és megjelenítése
     var eventsRef = firebase.database().ref('events');
     eventsRef.on('value', function(snapshot) {
       document.getElementById('eventsList').innerHTML = '';
@@ -105,11 +102,6 @@
       });
     });
   </script>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
 
 </body>
 </html>
