@@ -4,24 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Főoldal</title>
-    <!-- Bootstrap CSS betöltése -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* CSS a cikkek megjelenítéséhez */
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #2ecc71;
+        }
+
+        .navbar-brand,
+        .form-control,
+        .btn {
+            color: #fff;
+        }
+
         .article {
-            border: 1px solid #ddd; /* Halvány keret */
+            background-color: #fff;
+            border: 1px solid #ddd;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #2ecc71;
+            border-color: #2ecc71;
         }
     </style>
 </head>
 <body>
 
-<!-- Fejléc -->
 <header class="bg-dark text-light py-4">
     <div class="container">
-        <!-- Kereső -->
         <form class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Keresés..." aria-label="Keresés">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Keresés</button>
@@ -29,34 +46,41 @@
     </div>
 </header>
 
-<!-- Cikkek tartalom -->
 <div class="container mt-6">
     <div class="row">
-        <div class="col-md-6">
-            <div class="article">
+        <div class="col-md-12">
+            <div class="article text-center">
                 <h2>Cím1</h2>
                 <p>Ez egy rövid leírás a cikkről.</p>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="article">
+            <div class="article text-center">
                 <h2>Cím2</h2>
                 <p>Ez egy másik rövid leírás a cikkről.</p>
             </div>
+            <div class="article text-center">
+                <h2>Cím3</h2>
+                <p>Ez egy harmadik rövid leírás a cikkről.</p>
+            </div>
+            <div class="article text-center">
+                <h2>Cím4</h2>
+                <p>Ez egy negyedik rövid leírás a cikkről.</p>
+            </div>
+            <div class="article text-center">
+                <h2>Cím5</h2>
+                <p>Ez egy ötödik rövid leírás a cikkről.</p>
+            </div>
         </div>
-        <!-- További cikkek itt -->
     </div>
 </div>
+
 <div class="container mt-6">
-    <div class="row">
-        <a href="#" class="btn btn-primary" onclick="window.location.href='addevent.html'">Esemény hozzáadása</a>
-
-        <!-- További cikkek itt -->
+    <div class="row text-center">
+        <div class="col-md-12">
+            <a href="#" class="btn btn-primary" onclick="window.location.href='addevent.html'">Esemény hozzáadása</a>
+        </div>
     </div>
 </div>
 
-
-<!-- Bootstrap JavaScript betöltése -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

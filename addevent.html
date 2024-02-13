@@ -16,18 +16,18 @@
             <h2>Esemény hozzáadása</h2>
             <form action="esemeny_feldolgozas.php" method="POST">
                 <div class="form-group">
-                    <label for="event_name">Esemény neve:</label>
+                    <label for="event_name" id="nev">Esemény neve:</label>
                     <input type="text" class="form-control" id="event_name" name="event_name" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">Leírás:</label>
+                    <label for="description" id="message">Leírás:</label>
                     <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="event_date">Esemény ideje:</label>
+                    <label for="event_date" id="date">Esemény ideje:</label>
                     <input type="datetime-local" class="form-control" id="event_date" name="event_date" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Hozzáadás</button>
+                <button type="submit" class="btn btn-primary" id="click">Hozzáadás</button>
             </form>
         </div>
     </div>
@@ -37,6 +37,79 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+ 
+  const firebaseConfig = {
+    apiKey: "AIzaSyDGx8PS25uV6lhtgXKTAMbPpTiQcvXyPlA",
+    authDomain: "esemenyek-b6541.firebaseapp.com",
+    projectId: "esemenyek-b6541",
+    storageBucket: "esemenyek-b6541.appspot.com",
+    messagingSenderId: "156912111604",
+    appId: "1:156912111604:web:904e27dade71f0cb2173a1",
+    measurementId: "G-2XH9XHLBH2"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  
+    // Az esemény hozzáadása a Firebase Realtime Database-be
+    function addEvent() {
+      var eventName = document.getElementById('event_name').value;
+      var description = document.getElementById('description').value;
+      var eventDate = document.getElementById('event_date').value;
+  
+      firebase.database().ref('events').push({
+        eventName: eventName,
+        description: description,
+        eventDate: eventDate
+      });
+    }
+
+    function sendMessage() {
+                    const date = document.getElementById('date').value
+                    const name = document.getElementById('name').value;
+                    const message = document.getElementById('message').value;
+
+                    const currentTime = new Date();
+                    const formattedTime = currentTime.toLocaleString(); 
+
+                    db.collection("esemenyek").add({
+                      
+                      datum:date,
+                        nev: name,
+                        uzenet: message,
+                    })
+                        .then((docRef) => {
+                            console.log(docRef.id);
+                            const outputDiv = document.getElementById('output');
+                            outputDiv.innerHTML = `<p><b>Neve: ${name}</b></p><p><b>Üzenete: ${message}</b></p><p><b>Ideje:: ${formattedTime}</b></p>`;
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                };
+  
+    // Az események listázása és megjelenítése
+    var eventsRef = firebase.database().ref('events');
+    eventsRef.on('value', function(snapshot) {
+      document.getElementById('eventsList').innerHTML = '';
+      snapshot.forEach(function(childSnapshot) {
+        var childData = childSnapshot.val();
+        var eventHtml = '<div class="card mb-2"><div class="card-body"><h5 class="card-title">' + childData.eventName + '</h5><p class="card-text">' + childData.description + '</p><p class="card-text"><small class="text-muted">Esemény ideje: ' + childData.eventDate + '</small></p></div></div>';
+        document.getElementById('eventsList').innerHTML += eventHtml;
+      });
+    });
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
 
 </body>
 </html>
