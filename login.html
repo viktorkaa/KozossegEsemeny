@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,21 +40,33 @@
     </style>
 </head>
 <body>
-    <form id="login-form">
+    <form id="login-form" onsubmit="return validateLogin()">
         <h2>Bejelentkezés</h2>
         <input type="email" id="email" placeholder="E-mail cím" required>
         <input type="password" id="password" placeholder="Jelszó" required>
         <button type="submit">Bejelentkezés</button>
     </form>
+
+<script>
+function validateLogin() {
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+
+    // Egyszerű ellenőrzés, hogy az email és jelszó megfelelő formátumú-e
+    if (email === 'valódi@email.com' && password === 'valódi_jelszó') {
+        return true; 
+    } else {
+        alert('Hibás e-mail cím vagy jelszó!');
+        return false; 
+    }
+}
+</script>
+
 <script type="module">
-  // Import the functions you need from the SDKs you need
+  
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  
   const firebaseConfig = {
     apiKey: "AIzaSyDGx8PS25uV6lhtgXKTAMbPpTiQcvXyPlA",
     authDomain: "esemenyek-b6541.firebaseapp.com",
@@ -65,11 +77,11 @@
     measurementId: "G-2XH9XHLBH2"
   };
 
-  // Initialize Firebase
+  
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+
 </script>
 
-   
 </body>
 </html>
